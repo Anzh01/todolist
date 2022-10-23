@@ -5,28 +5,19 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import "./task.css";
 
 export default class Task extends Component {
-  state = {
-    completed: false,
-  };
-
-  OnLabelClick = () => {
-    this.setState((state) => {
-      return {
-        completed: !state.completed,
-      };
-    });
-  };
-
   render() {
     let classNames = "view";
+    const { label, onDeleted, onToggleDone, completed, displayed } = this.props;
 
-    const { completed } = this.state;
     if (completed) {
       classNames += " completed";
     }
-    const { label, onDeleted } = this.props;
+    if (!displayed) {
+      classNames += " not-displayed";
+    }
+
     return (
-      <div className={classNames} onClick={this.OnLabelClick}>
+      <div className={classNames} onClick={onToggleDone}>
         <input className="toggle" type="checkbox" />
         <label>
           <span className="description">{label}</span>

@@ -1,15 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom/client";
+import NewTaskFrom from "../new-task-form/new-task-form";
 
-import NewTaskForm from "../new-task-form/new-task-form";
-
-function Header() {
-  return (
-    <header className="header">
-      <h1> todos </h1>
-      <NewTaskForm />
-    </header>
-  );
+export default class Header extends Component {
+  render() {
+    return (
+      <header className="header">
+        <h1> todos </h1>
+        <NewTaskFrom onItemAdded={this.props.onItemAdded} />
+      </header>
+    );
+  }
 }
-
-export default Header;

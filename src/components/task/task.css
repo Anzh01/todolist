@@ -124,3 +124,7 @@ li .edit {
 li.editing:last-child {
   margin-bottom: -1px;
 }
+
+li .not-displayed {
+  display: none;
+}

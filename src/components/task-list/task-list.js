@@ -6,12 +6,18 @@ import Task from "../task/task";
 
 export default class TodoList extends Component {
   render() {
-    const { todos, onDeleted } = this.props;
+    const { todos, onDeleted, onToggleDone } = this.props;
     const elements = todos.map((item) => {
-      const { id, label } = item;
+      const { id, label, completed, displayed } = item;
       return (
         <li key={id}>
-          <Task label={label} onDeleted={() => onDeleted(id)} />
+          <Task
+            label={label}
+            completed={completed}
+            displayed={displayed}
+            onDeleted={() => onDeleted(id)}
+            onToggleDone={() => onToggleDone(id)}
+          />
         </li>
       );
     });
