@@ -1,81 +1,16 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom/client";
+import React, { Component } from 'react';
 
-import "./footer.css";
-import TasksFilter from "../task-filter/task-filter";
-import { compareAsc } from "date-fns";
+import './footer.css';
+
+import TasksFilter from '../task-filter/task-filter';
 
 export default class Footer extends Component {
-  static propTypes = {
-    todoCount: (props, propName, componentName) => {
-      const value = props[propName];
-      if (typeof value === "number" && !isNaN(value)) {
-        return null;
-      }
-
-      return new TypeError(`${componentName}: ${propName} should be a number`);
-    },
-    onActive: (props, propName, componentName) => {
-      const value = props[propName];
-      if (typeof value === "function") {
-        return null;
-      }
-
-      return new TypeError(
-        `${componentName}: ${propName} should be a function`
-      );
-    },
-    onCompleted: (props, propName, componentName) => {
-      const value = props[propName];
-      if (typeof value === "function") {
-        return null;
-      }
-
-      return new TypeError(
-        `${componentName}: ${propName} should be a function`
-      );
-    },
-    onAll: (props, propName, componentName) => {
-      const value = props[propName];
-      if (typeof value === "function") {
-        return null;
-      }
-
-      return new TypeError(
-        `${componentName}: ${propName} should be a function`
-      );
-    },
-    clearCompleted: (props, propName, componentName) => {
-      const value = props[propName];
-      if (typeof value === "function") {
-        return null;
-      }
-
-      return new TypeError(
-        `${componentName}: ${propName} should be a function`
-      );
-    },
-  };
-
-  static defaultProps = {
-    onAll: () => {},
-    onActive: () => {},
-    onCompleted: () => {},
-    clearCompleted: () => {},
-    todoCount: 0,
-  };
-
   render() {
-    const { todoCount, onActive, onCompleted, onAll, clearCompleted } =
-      this.props;
+    const { todoCount, onActive, onCompleted, onAll, clearCompleted } = this.props;
     return (
       <footer className="footer">
         <span className="todo-count">{todoCount} items left</span>
-        <TasksFilter
-          onActive={() => onActive()}
-          onCompleted={() => onCompleted()}
-          onAll={() => onAll()}
-        />
+        <TasksFilter onActive={() => onActive()} onCompleted={() => onCompleted()} onAll={() => onAll()} />
         <button className="clear-completed" onClick={() => clearCompleted()}>
           Clear completed
         </button>
@@ -83,3 +18,54 @@ export default class Footer extends Component {
     );
   }
 }
+
+Footer.propTypes = {
+  todoCount: (props, propName, componentName) => {
+    const value = props[propName];
+    if (typeof value === 'number' && !isNaN(value)) {
+      return null;
+    }
+
+    return new TypeError(`${componentName}: ${propName} should be a number`);
+  },
+  onActive: (props, propName, componentName) => {
+    const value = props[propName];
+    if (typeof value === 'function') {
+      return null;
+    }
+
+    return new TypeError(`${componentName}: ${propName} should be a function`);
+  },
+  onCompleted: (props, propName, componentName) => {
+    const value = props[propName];
+    if (typeof value === 'function') {
+      return null;
+    }
+
+    return new TypeError(`${componentName}: ${propName} should be a function`);
+  },
+  onAll: (props, propName, componentName) => {
+    const value = props[propName];
+    if (typeof value === 'function') {
+      return null;
+    }
+
+    return new TypeError(`${componentName}: ${propName} should be a function`);
+  },
+  clearCompleted: (props, propName, componentName) => {
+    const value = props[propName];
+    if (typeof value === 'function') {
+      return null;
+    }
+
+    return new TypeError(`${componentName}: ${propName} should be a function`);
+  },
+};
+
+Footer.defaultProps = {
+  onAll: () => {},
+  onActive: () => {},
+  onCompleted: () => {},
+  clearCompleted: () => {},
+  todoCount: 0,
+};

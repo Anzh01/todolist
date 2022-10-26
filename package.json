@@ -20,7 +20,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src --color",
+    "lint:fix": "eslint ./src --fix",
+    "precommit": "lint-staged"
   },
   "eslintConfig": {
     "extends": [
@@ -41,17 +44,34 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/eslint-parser": "^7.19.1",
+    "add": "^2.0.6",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.26.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1"
+    "or": "^0.2.0",
+    "prettier": "^2.7.1",
+    "yarn": "^1.22.19"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js, jsx}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
