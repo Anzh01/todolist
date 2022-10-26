@@ -5,10 +5,9 @@ import "./todo-app.css";
 import Header from "../header/header";
 import TodoList from "../task-list/task-list";
 import Footer from "../footer/footer";
-import { el } from "date-fns/locale";
 
 export default class App extends Component {
-  maxId = 100;
+  maxId = 1;
 
   state = {
     todoData: [
