@@ -1,20 +1,16 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom/client";
-import "./todo-app.css";
+import React, { Component } from 'react';
 
-import Header from "../header/header";
-import TodoList from "../task-list/task-list";
-import Footer from "../footer/footer";
+import './todo-app.css';
+
+import Header from '../header/header';
+import TodoList from '../task-list/task-list';
+import Footer from '../footer/footer';
 
 export default class App extends Component {
   maxId = 1;
 
   state = {
-    todoData: [
-      this.createItem("Completed task"),
-      this.createItem("Editing task"),
-      this.createItem("Active task"),
-    ],
+    todoData: [this.createItem('Completed task'), this.createItem('Editing task'), this.createItem('Active task')],
   };
   createItem(label) {
     return {
@@ -27,9 +23,7 @@ export default class App extends Component {
 
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
-      const newArr = [...todoData].map((el) =>
-        el.id === id ? { ...el, completed: !el.completed } : { ...el }
-      );
+      const newArr = [...todoData].map((el) => (el.id === id ? { ...el, completed: !el.completed } : { ...el }));
 
       return {
         todoData: newArr,
@@ -86,9 +80,7 @@ export default class App extends Component {
 
   onAll = () => {
     this.setState(({ todoData }) => {
-      const newArr = [...todoData].map(
-        (el) => (el = { ...el, displayed: true })
-      );
+      const newArr = [...todoData].map((el) => (el = { ...el, displayed: true }));
       return {
         todoData: newArr,
       };
@@ -109,11 +101,7 @@ export default class App extends Component {
     return (
       <section className="todoapp">
         <Header onItemAdded={this.addItem} />
-        <TodoList
-          todos={this.state.todoData}
-          onDeleted={this.deleteItem}
-          onToggleDone={this.onToggleDone}
-        />
+        <TodoList todos={this.state.todoData} onDeleted={this.deleteItem} onToggleDone={this.onToggleDone} />
         <Footer
           doneCount={doneCount}
           todoCount={todoCount}

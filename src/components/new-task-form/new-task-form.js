@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom/client";
+import React, { Component } from 'react';
 
-import "./new-task-form.css";
+import './new-task-form.css';
 
 export default class NewTaskFrom extends Component {
   state = {
-    label: "",
+    label: '',
   };
 
   onLabelChange = (e) => {
@@ -18,7 +17,7 @@ export default class NewTaskFrom extends Component {
     e.preventDefault();
     this.props.onItemAdded(this.state.label);
     this.setState({
-      label: "",
+      label: '',
     });
   };
 
